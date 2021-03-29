@@ -20,17 +20,17 @@
 
 ## items table
 
-| Column                    | Type    | Options                        |
-| ------------------------- | ------- | ------------------------------ |
-| item_name                 | string  | null: false                    |
-| item_description          | text    | null: false                    |
-| category_id               | integer | null: false                    |
-| item_status_id            | integer | null: false                    |
-| shipping_charge_burden_id | integer | null: false                    |
-| shipping_area_id          | integer | null: false                    |
-| shipping_period_id        | integer | null: false                    |
-| price                     | integer | null: false                    |
-| user_id                   | integer | null: false, foreign_key: true |
+| Column                    | Type       | Options                        |
+| ------------------------- | ---------- | ------------------------------ |
+| name                      | string     | null: false                    |
+| description               | text       | null: false                    |
+| category_id               | integer    | null: false                    |
+| status_id                 | integer    | null: false                    |
+| shipping_charge_burden_id | integer    | null: false                    |
+| shipping_area_id          | integer    | null: false                    |
+| shipping_period_id        | integer    | null: false                    |
+| price                     | integer    | null: false                    |
+| user                      | references | null: false, foreign_key: true |
 
 ### Association
  - belongs_to :user
@@ -39,15 +39,15 @@
 
 ## addresses table
 
-| Column           | Type    | Options                        |
-| ---------------- | ------- | ------------------------------ |
-| post_code        | string  | null: false                    |
-| shipping_area_id | integer | null: false                    |
-| city             | string  | null: false                    |
-| address          | string  | null: false                    |
-| building_name    | string  |                                |
-| phone_number     | string  | null: false                    |
-| purchase_id      | integer | null: false, foreign_key: true |
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| post_code        | string     | null: false                    |
+| shipping_area_id | integer    | null: false                    |
+| city             | string     | null: false                    |
+| address          | string     | null: false                    |
+| building_name    | string     |                                |
+| phone_number     | string     | null: false                    |
+| purchase         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :purchase
@@ -61,7 +61,7 @@
 | item    | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :addresses
+- has_one :address
 
 <!-- ##フリマアプリ
 
