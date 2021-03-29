@@ -2,51 +2,48 @@
 
 ## users table
 
-| Column                 | Type   | Options     |
-| ---------------------- | ------ | ----------- |
-| nickname               | string | null: false |
-| email                  | string | null: false |
-| encrypted_password     | string | null: false |
-| last_name              | string | null: false |
-| last_name_how_to_read  | string | null: false |
-| first_name             | string | null: false |
-| first_name_how_to_read | string | null: false |
-| birth_day              | string | null: false |
+| Column                 | Type   | Options                   |
+| ---------------------- | ------ | ------------------------- |
+| nickname               | string | null: false               |
+| email                  | string | null: false, unique: true |
+| encrypted_password     | string | null: false               |
+| last_name              | string | null: false               |
+| last_name_how_to_read  | string | null: false               |
+| first_name             | string | null: false               |
+| first_name_how_to_read | string | null: false               |
+| birth_day              | date   | null: false               |
 
 ### Association
 * has_many :items
-* belongs_to :client
+* has_many :purchases
+- belongs_to :address
 
 
-## items テーブル
+## items table
 
-| Column                 | Type    | Options                        |
-| ---------------------- | ------- | ------------------------------ |
-| image                  | string  | null: false                    |
-| item_name              | string  | null: false                    |
-| item_description       | string  | null: false                    |
-| category               | string  | null: false                    |
-| item_status            | string  | null: false                    |
-| shipping_charge_burden | string  | null: false                    |
-| shipping_area          | string  | null: false                    |
-| shipping_period        | string  | null: false                    |
-| price                  | string  | null: false                    |
-| user_id                | integer | null: false, foreign_key: true |
+| Column                    | Type    | Options                        |
+| ------------------------- | ------- | ------------------------------ |
+| item_name                 | string  | null: false                    |
+| item_description          | text    | null: false                    |
+| category_id               | integer | null: false                    |
+| item_status_id            | integer | null: false                    |
+| shipping_charge_burden_id | integer | null: false                    |
+| shipping_area_id          | integer | null: false                    |
+| shipping_period_id        | integer | null: false                    |
+| price                     | integer | null: false                    |
+| user_id                   | integer | null: false, foreign_key: true |
 
 ### Association
  - belongs_to :user
+ - belongs_to :purchases
 
 
-## client テーブル
+## addresses table
 
 | Column                 | Type    | Options                        |
 | ---------------------- | ------- | ------------------------------ |
-| last_name              | string  | null: false                    |
-| last_name_how_to_read  | string  | null: false                    |
-| first_name             | string  | null: false                    |
-| first_name_how_to_read | string  | null: false                    |
 | post_code              | string  | null: false                    |
-| prefectures            | string  | null: false                    |
+| prefecture_id          | integer | null: false                    |
 | city                   | string  | null: false                    |
 | address                | string  | null: false                    |
 | building_name          | string  |                                |
@@ -56,6 +53,14 @@
 ### Association
 - belongs_to :user
 
+## purchases table
+| Column  | Type       | Options                        |
+| ------  | ---------- | ------------------------------ |
+| user_id | references | null: false, foreign_key: true |
+| item_id | references | null: false, foreign_key: true |
+
+### Association
+（ここに追記していく）
 
 <!-- ##フリマアプリ
 
@@ -71,7 +76,7 @@ users テーブル
 
 
 items テーブル
-・image(商品画像)
+・image(商品画像) active_storage
 ・item_name(商品名)
 ・item_description(商品説明
 ・category(カテゴリー)
@@ -89,13 +94,16 @@ comments テーブル
 ・item_id
 
 
-client テーブル
-・last_name(名字)
-・last_name_how_to_read(名字フリガナ)
-・first_name(名前)
-・first_name_how_to_read(名前フリガナ)
+addresses テーブル
 ・post_code
 ・prefectures(都道府県)
 ・city(市)
 ・address(住所)
-・user_id -->
+・user_id 
+
+cade テーブル
+・card_number
+・expiration_date
+・security_code
+
+-->
