@@ -16,7 +16,6 @@
 ### Association
 * has_many :items
 * has_many :purchases
-- belongs_to :address
 
 
 ## items table
@@ -35,32 +34,34 @@
 
 ### Association
  - belongs_to :user
- - belongs_to :purchases
+ - has_one :purchase
 
 
 ## addresses table
 
-| Column                 | Type    | Options                        |
-| ---------------------- | ------- | ------------------------------ |
-| post_code              | string  | null: false                    |
-| prefecture_id          | integer | null: false                    |
-| city                   | string  | null: false                    |
-| address                | string  | null: false                    |
-| building_name          | string  |                                |
-| phone_number           | string  | null: false                    |
-| user_id                | integer | null: false, foreign_key: true |
+| Column        | Type    | Options                        |
+| ------------- | ------- | ------------------------------ |
+| post_code     | string  | null: false                    |
+| prefecture_id | integer | null: false                    |
+| city          | string  | null: false                    |
+| address       | string  | null: false                    |
+| building_name | string  |                                |
+| phone_number  | string  | null: false                    |
+| purchase_id   | integer | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
+- belongs_to :purchase
+
 
 ## purchases table
+
 | Column  | Type       | Options                        |
 | ------  | ---------- | ------------------------------ |
 | user_id | references | null: false, foreign_key: true |
 | item_id | references | null: false, foreign_key: true |
 
 ### Association
-（ここに追記していく）
+- belongs_to :addresses
 
 <!-- ##フリマアプリ
 
