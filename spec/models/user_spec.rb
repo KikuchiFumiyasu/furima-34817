@@ -92,8 +92,9 @@ RSpec.describe User, type: :model do
       end
 
       it 'メールアドレスは、@を含む必要があること' do
-        @user.email = 'sample@test.com'
-        expect(@user).to be_valid
+        @user.email = 'sampletest.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
 
       it 'パスワードが必須であること' do
