@@ -4,11 +4,11 @@ class Item < ApplicationRecord
 
   has_one_attached :image
 
-  belongs_to :category
-  belongs_to :status
-  belongs_to :shipping_charge_burden
-  belongs_to :shipping_area
-  belongs_to :shipping_period
+  belongs_to_active_hash :category
+  belongs_to_active_hash :status
+  belongs_to_active_hash :shipping_charge_burden
+  belongs_to_active_hash :shipping_area
+  belongs_to_active_hash :shipping_period
 
   with_options presence: true do
     validates :image
@@ -19,7 +19,10 @@ class Item < ApplicationRecord
     validates :shipping_charge_burden_id
     validates :shipping_area_id
     validates :shipping_period_id
-    validates :price
+
+    VALID_PRICEL_HALF = /\A[0-9]+\z/
+    validates :price, numericality: {with: VALID_PRICEL_HALF, only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   end
+  
   
 end
