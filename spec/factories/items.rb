@@ -12,6 +12,8 @@ FactoryBot.define do
     shipping_area_id               { 2 }
     shipping_period_id             { 2 }
     price                          { 300 }
-    user
+
+    association :user
+
   end
 end
