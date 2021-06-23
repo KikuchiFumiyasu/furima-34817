@@ -86,10 +86,22 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
+      it 'カテゴリーのid情報が1以外であること' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be greater than 1")
+      end
+
       it '商品の状態についての情報が必須であること' do
         @item.status_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
+      end
+
+      it '商品の状態についてのid情報が1以外であること' do
+        @item.status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status must be greater than 1")
       end
 
       it '配送料の負担についての情報が必須であること' do
@@ -98,16 +110,34 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Shipping charge burden can't be blank")
       end
 
+      it '配送料の負担についてのid情報が1以外であること' do
+        @item.shipping_charge_burden_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping charge burden must be greater than 1")
+      end
+
       it '発送元の地域についての情報が必須であること' do
         @item.shipping_area_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping area can't be blank")
       end
 
+      it '発送元の地域についてのid情報が1以外であること' do
+        @item.shipping_area_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping area must be greater than 1")
+      end
+
       it '発送までの日数についての情報が必須であること' do
         @item.shipping_period_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping period can't be blank")
+      end
+
+      it '発送までの日数についてのid情報が1以外であること' do
+        @item.shipping_period_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping period must be greater than 1")
       end
 
       it '販売価格についての情報が必須であること' do

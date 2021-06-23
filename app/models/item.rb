@@ -14,11 +14,14 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :description
-    validates :category_id
-    validates :status_id
-    validates :shipping_charge_burden_id
-    validates :shipping_area_id
-    validates :shipping_period_id
+
+    with_options numericality: { greater_than: 1 } do
+      validates :category_id
+      validates :status_id
+      validates :shipping_charge_burden_id
+      validates :shipping_area_id
+      validates :shipping_period_id
+    end
 
     VALID_PRICEL_HALF = /\A[0-9]+\z/
     validates :price,
