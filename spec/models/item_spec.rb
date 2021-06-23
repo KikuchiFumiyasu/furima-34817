@@ -26,27 +26,27 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリー情報があれば出品できること' do
-        @item.category_id = '2'
+        @item.category_id = 2
         expect(@item).to be_valid
       end
 
       it '商品状態、情報があれば出品できること' do
-        @item.status_id = '2'
+        @item.status_id = 2
         expect(@item).to be_valid
       end
 
       it '配送料負担、情報があれば出品できること' do
-        @item.shipping_charge_burden_id = '2'
+        @item.shipping_charge_burden_id = 2
         expect(@item).to be_valid
       end
 
       it '発送元地域、情報があれば出品できること' do
-        @item.shipping_area_id = '2'
+        @item.shipping_area_id = 2
         expect(@item).to be_valid
       end
 
       it '発送日までの日数、情報があれば出品できること' do
-        @item.shipping_period_id = '2'
+        @item.shipping_period_id = 2
         expect(@item).to be_valid
       end
 
