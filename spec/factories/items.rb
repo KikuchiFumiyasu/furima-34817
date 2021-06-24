@@ -14,6 +14,5 @@ FactoryBot.define do
     price                          { 300 }
 
     association :user
-
   end
 end
