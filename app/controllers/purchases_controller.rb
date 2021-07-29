@@ -7,10 +7,6 @@ class PurchasesController < ApplicationController
     @purchase_address = PurchaseAddress.new
   end
 
-  def new
-    @purchase_address = PurchaseAddress.new
-  end
-
   def create
     @purchase_address = PurchaseAddress.new(purchase_params)
     if @purchase_address.valid?
@@ -44,6 +40,6 @@ class PurchasesController < ApplicationController
   end
 
   def transition_limit
-    return redirect_to root_path if current_user.id == @item.user.id || user_signed_in? && !@item.purchase.nil?
+    return redirect_to root_path if current_user.id == @item.user.id || !@item.purchase.nil?
   end
 end

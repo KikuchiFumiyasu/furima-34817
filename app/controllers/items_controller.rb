@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :aggregate_items, except: [:index, :new, :create]
   before_action :appropriate_user, only: [:edit, :update, :destroy]
-  before_action :transition_limit, only: [:edit, :update]
+  before_action :transition_limit, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -54,6 +54,6 @@ class ItemsController < ApplicationController
   end
 
   def transition_limit
-    redirect_to root_path if (current_user.id = @item.user.id) && @item.purchase
+    redirect_to root_path if @item.purchase
   end
 end
