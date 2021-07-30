@@ -49,7 +49,7 @@ RSpec.describe PurchaseAddress, type: :model do
       it '郵便番号が空だと保存できないこと' do
         @purchase_address.post_code = ''
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Post code can't be blank", 'Post code is invalid')
+        expect(@purchase_address.errors.full_messages).to include("Post code can't be blank")
       end
 
       it '郵便番号が半角のハイフンを含んだ正しい形式でないと保存できないこと' do
