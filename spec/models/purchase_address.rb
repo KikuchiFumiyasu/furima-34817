@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe PurchaseAddress, type: :model do
   describe '購入・配送先情報の保存' do
     before do
-      @user = FactoryBot.build(:user)
-      @item = FactoryBot.build(:item)
+      @user = FactoryBot.create(:user)
+      @item = FactoryBot.create(:item)
       @purchase_address = FactoryBot.build(:purchase_address, user_id: @user.id, item_id: @item.id)
+      sleep 0.1
     end
 
     context '内容に問題ない場合' do
@@ -108,13 +109,13 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'ユーザIDが空だと保存できないこと' do
         @purchase_address.user_id = nil
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include
+        expect(@purchase_address.errors.full_messages).to include("User can't be blank")
       end
 
       it 'アイテムIDが空だと保存できないこと' do
         @purchase_address.item_id = nil
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include
+        expect(@purchase_address.errors.full_messages).to include("Item can't be blank")
       end
 
       it 'トークン情報が空だと保存できないこと' do
