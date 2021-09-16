@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :appropriate_user, only: [:edit, :update, :destroy]
   before_action :transition_limit, only: [:edit, :update, :destroy]
 
+
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -19,6 +20,12 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user).order('created_at DESC')
   end
 
   def update
